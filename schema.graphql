@@ -1,0 +1,68 @@
+#
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+#
+type Query {
+  #
+  countryStats(filter: CountryFilter): [CountryStats!]!
+}
+
+#
+input CountryFilter {
+  #
+  country: String
+}
+
+#
+type CountryStats {
+  #
+  country: String
+
+  #
+  cases: Int
+
+  #
+  todayCases: Int
+
+  #
+  deaths: Int
+
+  #
+  todayDeaths: Int
+
+  #
+  recovered: Int
+
+  #
+  active: Int
+
+  #
+  critical: Int
+
+  #
+  casesPerOneMillion: Int
+
+  #
+  deathsPerOneMillion: Int
+
+  #
+  countryCode: String
+
+  #
+  confirmed: Int
+}
+
+#
+enum CacheControlScope {
+  #
+  PUBLIC
+
+  #
+  PRIVATE
+}
+
+# The `Upload` scalar type represents a file upload.
+scalar Upload

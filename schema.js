@@ -1,5 +1,5 @@
-import { gql } from "apollo-server";
-import dataGraphQLCovid from "./data.js";
+import dataGraphQLCovid from './data.js';
+import {gql} from 'apollo-server';
 
 export const typeDefs = gql`
   type Query {
@@ -27,12 +27,12 @@ export const typeDefs = gql`
 `;
 
 const filterHandlers = {
-  country: (country) => (data) => {
-    return data.filter((item) => item.country === country);
-  },
+  country: country => data => {
+    return data.filter(item => item.country === country);
+  }
 };
 
-const filterWith = (filters) => (data) => {
+const filterWith = filters => data => {
   return Object.entries(filterHandlers).reduce(
     (filteredData, [name, handler]) => {
       return name in filters
@@ -47,10 +47,10 @@ export const resolvers = {
   Query: {
     countryStats: async (_, args) => {
       const json = dataGraphQLCovid;
-      const data = json.data;
-      const { filter } = args;
+      const {data} = json;
+      const {filter} = args;
 
       return filter ? filterWith(filter)(data) : data;
-    },
-  },
+    }
+  }
 };
