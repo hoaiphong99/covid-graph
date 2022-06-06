@@ -8,6 +8,9 @@ directive @cacheControl(
 type Query {
   #
   countryStats(filter: CountryFilter): [CountryStats!]!
+
+  #
+  worldStats: WorldStats!
 }
 
 #
@@ -50,6 +53,42 @@ type CountryStats {
 
   #
   countryCode: String
+
+  #
+  confirmed: Int
+}
+
+#
+type WorldStats {
+  #
+  country: String
+
+  #
+  countryCode: String
+
+  #
+  cases: Int
+
+  #
+  todayCases: Int
+
+  #
+  deaths: Int
+
+  #
+  todayDeaths: Int
+
+  #
+  recovered: Int
+
+  #
+  active: Int
+
+  #
+  critical: Int
+
+  #
+  casesPerOneMillion: String
 
   #
   confirmed: Int
